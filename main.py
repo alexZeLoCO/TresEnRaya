@@ -1,26 +1,16 @@
-#INICIALIZACIÓN DE VARIABLES GLOBALES (ASÍ EXISTEN EN TODAS LAS SUBRUTINAS)
+#INICIALIZACIÓN DE VARIABLES
 #CASILLAS
-global C1
 C1=0
-global C2
 C2=0
-global C3
 C3=0
-global C4
 C4=0
-global C5
 C5=0
-global C6
 C6=0
-global C7
 C7=0
-global C8
 C8=0
-global C9
 C9=0
 
 #RONDA
-global ronda
 ronda=0
 
 
@@ -36,29 +26,51 @@ def Tablero (C1,C2,C3,C4,C5,C6,C7,C8,C9):
 def Victoria (ronda,C1,C2,C3,C4,C5,C6,C7,C8,C9):        #RECIBE POSICIONES COMO PARÁMETROS
             #Y RONDA
 
-    if ((C1==C2 and C2==C3 and (C3==1 or C3==2)) or     #CONDICIONES DE VICTORIA
-        (C4==C5 and C5==C6 and (C6==1 or C6==2)) or
-        (C7==C8 and C8==C9 and (C9==1 or C9==2)) or
-        (C1==C5 and C5==C9 and (C9==1 or C9==2)) or
-        (C1==C5 and C5==C9 and (C9==1 or C9==2)) or
-        (C1==C4 and C4==C7 and (C7==1 or C7==2)) or
-        (C2==C5 and C5==C8 and (C8==1 or C8==2)) or
-        (C2==C5 and C5==C8 and (C8==1 or C8==2)) or
-        (C3==C6 and C6==C9 and (C9==1 or C9==2))):
+    if ((C1==C2 and C2==C3 and C3==1) or     #CONDICIONES DE VICTORIA
+        (C4==C5 and C5==C6 and C6==1) or
+        (C7==C8 and C8==C9 and C9==1) or
+        (C1==C5 and C5==C9 and C9==1) or
+        (C1==C5 and C5==C9 and C9==1) or
+        (C1==C4 and C4==C7 and C7==1) or
+        (C2==C5 and C5==C8 and C8==1) or
+        (C2==C5 and C5==C8 and C8==1) or
+        (C3==C6 and C6==C9 and C9==1)):      #SI LA CONDICIÓN SE CUMPLE CON EL UNO
 
-        if (C3==1 or C6==1 or C9==1 or C7==1 or C8==1):     #SI LA CONDICIÓN SE CUMPLE CON EL UNO
             print ("Victoria para el Jugador 1")        #OUTPUT
             print("En ronda", ronda)        #OUTPUT
 
-        else:       #SI NO (GANÓ EL JUGADOR 2)
+            Tablero(C1, C2, C3, C4, C5, C6, C7, C8, C9)  # SITUACIÓN DE VICTORIA
+            return 1  # DEVUELVE RESULTADO
+
+    if ((C1 == C2 and C2 == C3 and C3 == 2) or  # CONDICIONES DE VICTORIA
+        (C4 == C5 and C5 == C6 and C6 == 2) or
+        (C7 == C8 and C8 == C9 and C9 == 2) or
+        (C1 == C5 and C5 == C9 and C9 == 2) or
+        (C1 == C5 and C5 == C9 and C9 == 2) or
+        (C1 == C4 and C4 == C7 and C7 == 2) or
+        (C2 == C5 and C5 == C8 and C8 == 2) or
+        (C2 == C5 and C5 == C8 and C8 == 2) or
+        (C3 == C6 and C6 == C9 and C9 == 2)):       #SI LA CONDICIÓN SE CUMPLE CON EL 2
+
             print ("Victoria para el jugador 2")        #OUTPUT
             print("En ronda", ronda)        #OUTPUT
 
-        Tablero(C1, C2, C3, C4, C5, C6, C7, C8, C9)  # SITUACIÓN DE VICTORIA
-        return 1     #DEVUELVE RESULTADO
+            Tablero(C1, C2, C3, C4, C5, C6, C7, C8, C9)  # SITUACIÓN DE VICTORIA
+            return 1     #DEVUELVE RESULTADO
 
-    else:       #SI NO SE CUMPLEN
-        return 0        #DEVUELVE RESULTADO
+
+    if (not ((C1 == C2 and C2 == C3 and (C3 == 1 or C3 == 2)) or  # CONDICIONES DE NO VICTORIA
+        (C4 == C5 and C5 == C6 and (C6 == 1 or C6 == 2)) or
+        (C7 == C8 and C8 == C9 and (C9 == 1 or C9 == 2)) or
+        (C1 == C5 and C5 == C9 and (C9 == 1 or C9 == 2)) or
+        (C1 == C5 and C5 == C9 and (C9 == 1 or C9 == 2)) or
+        (C1 == C4 and C4 == C7 and (C7 == 1 or C7 == 2)) or
+        (C2 == C5 and C5 == C8 and (C8 == 1 or C8 == 2)) or
+        (C2 == C5 and C5 == C8 and (C8 == 1 or C8 == 2)) or
+        (C3 == C6 and C6 == C9 and (C9 == 1 or C9 == 2)))):
+            return 0        #DEVUELVE RESULTADO
+
+
 
     #SUBRUTINA PLAY, CONTIENE EL JUEGO PRINCIPAL
 def play (ronda,C1,C2,C3,C4,C5,C6,C7,C8,C9):        #RECIBE PARÁMETROS
@@ -146,6 +158,5 @@ def play (ronda,C1,C2,C3,C4,C5,C6,C7,C8,C9):        #RECIBE PARÁMETROS
                 C9 = 2
 
         ronda = ronda + 1       #ACTUALIZA RONDA
-
 
 play(ronda,C1,C2,C3,C4,C5,C6,C7,C8,C9)      #LLAMA SUBRUTINA PLAY (INICIO DE JUEGO)
